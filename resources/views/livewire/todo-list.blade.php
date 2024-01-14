@@ -11,7 +11,7 @@
 
     <div id="todos-list">
 
-        @forelse ($todos as $todo)
+        @forelse ($this->todos as $todo)
             @include('livewire.includes.todo-card')
         @empty
             <div
@@ -21,7 +21,7 @@
         @endforelse
         <div class="my-2">
             <!-- Pagination goes here -->
-            {{ $todos->links() }}
+            {{ $this->todos->links() }}
         </div>
     </div>
 </div>

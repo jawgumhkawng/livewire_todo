@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Todo;
 use Exception;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
 use Livewire\WithPagination;
@@ -72,13 +73,22 @@ class TodoList extends Component
         }
     }
 
+    public function mount($search)
+    {
+        $this->search = $search;
+    }
+
+    #[Computed()]
+    public function todos()
+    {
+        return Todo::latest()->where('name', 'like', "%{$this->search}%")->paginate(4);
+    }
+
     public function render()
     {
         return view(
             'livewire.todo-list',
-            [
-                'todos' => Todo::latest()->where('name', 'like', "%{$this->search}%")->paginate(4),
-            ]
+            []
         );
     }
 }

@@ -35,7 +35,8 @@
                 </svg>
             </button>
             <button wire:click="delete({{ $todo->id }})"
-                class="text-sm text-red-500 font-semibold rounded hover:text-teal-800 mr-1">
+                class="text-sm text-red-500 font-semibold rounded hover:text-teal-800 mr-1"
+                onclick="return confirm('are u sure to delete')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,7 +49,8 @@
     <div class="mt-3 text-xs text-gray-700">
         @if ($editTodoId == $todo->id)
             <button wire:click="update"
-                class="mt-3 px-4 py-2 bg-teal-500 text-white font-semibold rounded hover:bg-teal-600">Update</button>
+                class="mt-3 px-4 py-2 bg-teal-500 text-white font-semibold rounded hover:bg-teal-600"
+                onclick="return confirm('are u sure to updade')">Update</button>
             <button wire:click="cancelEdit"
                 class="mt-3 px-4 py-2 bg-red-500 text-white font-semibold rounded hover:bg-red-600">Cancel</button>
         @endif

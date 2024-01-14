@@ -26,7 +26,9 @@
         </div>
     </div>
     <div id="content" class="mx-auto" style="max-width:500px;">
-        @livewire('todo-list')
+        {{-- @livewire('todo-list') --}}
+        {{-- @livewire('todo-list', ['search' => 'jaw']) --}}
+        <livewire:todo-list search='jaw' />
     </div>
 
 </body>
