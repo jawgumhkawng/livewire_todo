@@ -6,6 +6,7 @@
             <p>{{ session('error') }}</p>
         </div>
     @endif
+    @include('livewire.includes.flash-message')
     @include('livewire.includes.create-todo-box')
     @include('livewire.includes.search-box')
 
