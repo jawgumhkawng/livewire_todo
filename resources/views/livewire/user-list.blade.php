@@ -39,10 +39,14 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">name</th>
-                                    <th scope="col" class="px-4 py-3">email</th>
-                                    <th scope="col" class="px-4 py-3">Role</th>
-                                    <th scope="col" class="px-4 py-3">Joined</th>
+                                    @include('livewire.includes.table-sort-th', [
+                                        'name' => 'name',
+                                        'displayName' => 'Name',
+                                    ])
+                                    <th scope="col" class="px-4 py-3" wire:click="setSortName('email')">email</th>
+                                    <th scope="col" class="px-4 py-3" wire:click="setSortName('is_admin')">Role</th>
+                                    <th scope="col" class="px-4 py-3" wire:click="setSortName('created_at')">Joined
+                                    </th>
                                     <th scope="col" class="px-4 py-3">Last update</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
@@ -62,7 +66,9 @@
                                         <td class="px-4 py-3">{{ $user->created_at }}</td>
                                         <td class="px-4 py-3">{{ $user->updated_at }}</td>
                                         <td class="px-4 py-3 flex items-center justify-end">
-                                            <button wire:click = 'delete({{ $user->id }})'
+                                            <button
+                                                onclick="confirm('Are You Sure Want To Delete {{ $user->name }} ?') || event.stopImmediatePropagation()"
+                                                wire:click = 'delete({{ $user->id }})'
                                                 class="px-3 py-1 bg-red-500 text-white rounded">X</button>
                                         </td>
                                     </tr>
