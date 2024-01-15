@@ -16,7 +16,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="text"
+                                <input wire:model.live = "search" type="text"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                                     placeholder="Search" required="">
                             </div>
@@ -26,7 +26,7 @@
                                 <label class="w-40 text-sm font-medium text-gray-900  dark:text-white ">User
                                     Type
                                     :</label>
-                                <select
+                                <select wire:model.live = "admin"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                     <option value="">All</option>
                                     <option value="0">User</option>
@@ -51,7 +51,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                    <tr class="border-b dark:border-gray-700">
+                                    <tr class="border-b dark:border-gray-700" wire:key = "{{ $user->id }}">
                                         <th scope="row"
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $user->name }}</th>
@@ -62,7 +62,8 @@
                                         <td class="px-4 py-3">{{ $user->created_at }}</td>
                                         <td class="px-4 py-3">{{ $user->updated_at }}</td>
                                         <td class="px-4 py-3 flex items-center justify-end">
-                                            <button class="px-3 py-1 bg-red-500 text-white rounded">X</button>
+                                            <button wire:click = 'delete({{ $user->id }})'
+                                                class="px-3 py-1 bg-red-500 text-white rounded">X</button>
                                         </td>
                                     </tr>
                                 @endforeach
